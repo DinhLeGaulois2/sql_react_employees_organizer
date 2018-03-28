@@ -7,7 +7,7 @@ var db = {};
 
 var DBInfo = {
     username: "root",
-    password: "",   // <----------------- Your Password here
+    password: "Info((Jussieu[[Mias<<",   // <----------------- Your Password here
     database: "employees_organizer",
     host: "127.0.0.1",
     dialect: "mysql",
@@ -28,7 +28,6 @@ db.department = require('../models/department.js')(sequelize, Sequelize)
 db.dept_emp = require('../models/dept_emp.js')(sequelize, Sequelize)
 db.dept_manager = require('../models/dept_manager.js')(sequelize, Sequelize)
 db.employee = require('../models/employee.js')(sequelize, Sequelize)
-db.list.txt = require('../models/list.txt.js')(sequelize, Sequelize)
 db.salarie = require('../models/salarie.js')(sequelize, Sequelize)
 db.title = require('../models/title.js')(sequelize, Sequelize)
 
