@@ -49,3 +49,5 @@ db.salarie.belongsTo(db.employee)
 
 db.employee.hasMany(db.title)
 db.title.belongsTo(db.employee)
+
+module.exports = db;
