@@ -1,4 +1,4 @@
-#Employees Organizer - ReactJS
+# Employees Organizer - ReactJS
 
 ## Aim
 Building a project based on an EER (Enhanced Entity-Relationship).
