@@ -1,5 +1,10 @@
 module.exports = function (sequelize, Sequelize) {
-    const Salarie = sequelize.define("salarie", {         
+    const Salarie = sequelize.define("salarie", {    
+        id: {
+            type: Sequelize.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+        },     
         salary: {
             type: Sequelize.INTEGER,
             validate: {

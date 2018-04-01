@@ -1,8 +1,9 @@
 module.exports = function (sequelize, Sequelize) {
-    const Employee = sequelize.define("employee", {        
+    const Employee = sequelize.define("employee", {
         emp_no: {
             type: Sequelize.INTEGER,
-            primaryKey: true
+            primaryKey: true,
+            autoIncrement: true
         },
         birth_date: {
             type: Sequelize.DATE,
@@ -21,7 +22,7 @@ module.exports = function (sequelize, Sequelize) {
             validate: {
                 notEmpty: true,
             }
-        },        
+        },
         gender: {
             type: Sequelize.ENUM,
             values: ['M', 'F'],

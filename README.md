@@ -1,4 +1,5 @@
 # Employees Organizer - ReactJS
+# (This is rather a React-Redux Architecture. Will Use ReactJS after finishing the React-Redux ...)
 
 ## Aim
 Building a project based on an EER (Enhanced Entity-Relationship).

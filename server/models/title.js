@@ -1,5 +1,10 @@
 module.exports = function (sequelize, Sequelize) {
     const Title = sequelize.define("title", {
+        id: {
+            type: Sequelize.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+        },
         title:{
             type: Sequelize.DATE,
             primaryKey: true
