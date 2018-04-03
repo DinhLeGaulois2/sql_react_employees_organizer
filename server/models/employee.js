@@ -1,6 +1,6 @@
 module.exports = function (sequelize, Sequelize) {
     const Employee = sequelize.define("employee", {
-        emp_no: {
+        id: {
             type: Sequelize.INTEGER,
             primaryKey: true,
             autoIncrement: true

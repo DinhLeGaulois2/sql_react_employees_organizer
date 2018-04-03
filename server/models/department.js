@@ -5,10 +5,6 @@ module.exports = function (sequelize, Sequelize) {
             primaryKey: true,
             autoIncrement: true,
         },
-        dept_no: {
-            type: Sequelize.STRING,
-            primaryKey: true
-        },
         name: {
             type: Sequelize.STRING,
             validate: {

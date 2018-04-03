@@ -28,7 +28,7 @@ db.department = require('../models/department.js')(sequelize, Sequelize)
 db.dept_emp = require('../models/dept_emp.js')(sequelize, Sequelize)
 db.dept_manager = require('../models/dept_manager.js')(sequelize, Sequelize)
 db.employee = require('../models/employee.js')(sequelize, Sequelize)
-db.salarie = require('../models/salarie.js')(sequelize, Sequelize)
+db.salary = require('../models/salary.js')(sequelize, Sequelize)
 db.title = require('../models/title.js')(sequelize, Sequelize)
 
 // n-m 
@@ -43,8 +43,8 @@ db.dept_emp.belongsTo(db.department)
 db.department.hasMany(db.dept_emp)
 
 // 1-n
-db.employee.hasMany(db.salarie)
-db.salarie.belongsTo(db.employee)
+db.employee.hasMany(db.salary)
+db.salary.belongsTo(db.employee)
 
 db.employee.hasMany(db.title)
 db.title.belongsTo(db.employee)
