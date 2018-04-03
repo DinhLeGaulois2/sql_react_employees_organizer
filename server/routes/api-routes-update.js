@@ -6,14 +6,48 @@ const db = require("../models");
 
 module.exports = function (app) {
     app.put("/api/put/employee/salary/", (req, res) => {
-
+        db.salary.findOne({ where: { employeeId: req.body.empId } })
+            .then(data => {
+                if (data == null)
+                    res.status(400).json("The Employee with the id of '" + req.body.empId + "' could not be fould!")
+                else {
+                    db.salary.update({
+                        salary: req.body.salary,
+                    }, { where: { employeeId: req.body.empId } })
+                        .then(data => res.status(200).json("Update Successfully!"))
+                        .catch(err => res.status(400).json(err))
+                }
+            })
     })
 
     app.put("/api/put/employee/title", (req, res) => {
-
+        db.title.findOne({ where: { employeeId: req.body.empId } })
+            .then(data => {
+                if (data == null)
+                    res.status(400).json("The title of the employee with the id of '" + req.body.id + "' could not be fould!")
+                else {
+                    db.salary.update({
+                        salary: req.body.salary,
+                    }, { where: { id: req.body.id } })
+                        .then(data => res.status(200).json("Update Successfully!"))
+                        .catch(err => res.status(400).json(err))
+                }
+            })
     })
 
-    app.put("/api/put/employee/department", (req, res) => {
 
+    app.put("/api/put/employee/department", (req, res) => {
+        db.dept_emp.findOne({ where: { employeeId: req.body.empId } })
+            .then(data => {
+                if (data == null)
+                    res.status(400).json("The Department of the employee with the id of '" + req.body.id + "' could not be fould!")
+                else {
+                    db.dept_emp.update({
+                        departmentId: req.body.dptId,
+                    }, { where: { employeeId: req.body.empId } })
+                        .then(data => res.status(200).json("Update Successfully!"))
+                        .catch(err => res.status(400).json(err))
+                }
+            })
     })
 }
