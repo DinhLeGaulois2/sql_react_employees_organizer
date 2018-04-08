@@ -32,9 +32,6 @@ module.exports = function (sequelize, Sequelize) {
         },
         hire_date: {
             type: Sequelize.DATE,
-            validate: {
-                notEmpty: true,
-            }
         }
     });
 

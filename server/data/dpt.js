@@ -7,4 +7,4 @@ const dpt = [
     { name: 'Accounting and Finance' }
 ]
 
-module.export = dpt
+module.exports = dpt

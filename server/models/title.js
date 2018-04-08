@@ -6,7 +6,7 @@ module.exports = function (sequelize, Sequelize) {
             autoIncrement: true,
         },
         title:{
-            type: Sequelize.DATE,
+            type: Sequelize.STRING,
             primaryKey: true
         },
         from_date: {
