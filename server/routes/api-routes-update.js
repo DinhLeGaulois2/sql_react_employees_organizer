@@ -5,7 +5,7 @@ const Op = Sequelize.Op;
 const db = require("../models");
 
 module.exports = function (app) {
-    app.put("/api/put/employee/salary/", (req, res) => {
+    app.put("/api/put/employee/salary/", (req, res, next) => {
         db.salary.findOne({ where: { employeeId: req.body.empId } })
             .then(data => {
                 if (data == null)
@@ -15,12 +15,12 @@ module.exports = function (app) {
                         salary: req.body.salary,
                     }, { where: { employeeId: req.body.empId } })
                         .then(data => res.status(200).json("Update Successfully!"))
-                        .catch(err => res.status(400).json(err))
+                        .catch(next)
                 }
             })
     })
 
-    app.put("/api/put/employee/title", (req, res) => {
+    app.put("/api/put/employee/title", (req, res, next) => {
         db.title.findOne({ where: { employeeId: req.body.empId } })
             .then(data => {
                 if (data == null)
@@ -30,13 +30,13 @@ module.exports = function (app) {
                         salary: req.body.salary,
                     }, { where: { id: req.body.id } })
                         .then(data => res.status(200).json("Update Successfully!"))
-                        .catch(err => res.status(400).json(err))
+                        .catch(next)
                 }
             })
     })
 
 
-    app.put("/api/put/employee/department", (req, res) => {
+    app.put("/api/put/employee/department", (req, res, next) => {
         db.dept_emp.findOne({ where: { employeeId: req.body.empId } })
             .then(data => {
                 if (data == null)
@@ -46,7 +46,7 @@ module.exports = function (app) {
                         departmentId: req.body.dptId,
                     }, { where: { employeeId: req.body.empId } })
                         .then(data => res.status(200).json("Update Successfully!"))
-                        .catch(err => res.status(400).json(err))
+                        .catch(next)
                 }
             })
     })

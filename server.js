@@ -13,6 +13,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Point static path to dist
 app.use(express.static(path.join(__dirname, 'dist')));
 
+// error handling middleware
+app.use((err, req, res, next) => {
+    res.status(422).send({ error: err.message })
+})
+
 /**
  * Get port from environment and store in Express.
  */
@@ -29,6 +34,14 @@ require("./server/routes/api-routes-read.js")(app);
 require("./server/routes/api-routes-delete.js")(app);
 require("./server/routes/api-routes-update.js")(app);
 require("./server/routes/html-routes.js")(app);
+
+// error handling middleware
+app.use(function (err, req, res, next) {
+    res.json({ 
+        error: 422,
+        message: err.toString()
+    });
+})
 
 db.sequelize.sync({ force: false }).then(() => {
     initValues();

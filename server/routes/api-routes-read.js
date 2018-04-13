@@ -8,7 +8,7 @@ const Op = Sequelize.Op;
 const db = require("../models");
 
 module.exports = function (app) {
-    app.get("/api/get/department/:id", (req, res) => {
+    app.get("/api/get/department/:id", (req, res, next) => {
         db.department.findAll({
             where: { id: req.params.id },
             attributes: ['id', 'name'],
@@ -24,10 +24,10 @@ module.exports = function (app) {
             ]
         })
             .then(data => res.status(200).json(data))
-            .catch(err => res.status(400).json(err))
+            .catch(next)
     })
 
-    app.get("/api/get/departments", (req, res) => {
+    app.get("/api/get/departments", (req, res, next) => {
         db.department.findAll({
             attributes: ['id', 'name'],
             include: [
@@ -42,10 +42,10 @@ module.exports = function (app) {
             ]
         })
             .then(data => res.status(200).json(data))
-            .catch(err => res.status(400).json(err))
+            .catch(next)
     })
 
-    app.get("/api/get/employee/:id", (req, res) => {
+    app.get("/api/get/employee/:id", (req, res, next) => {
         db.employee.findAll({
             where: { id: req.params.id },
             attributes: ['id', 'birth_date', 'first_name', 'last_name', 'gender'],
@@ -85,12 +85,12 @@ module.exports = function (app) {
                         result.dpt_name = data[0].name
                         res.status(200).json(result)
                     })
-                    .catch(err => res.status(400).json(err))
+                    .catch(next)
             })
-            .catch(err => res.status(400).json(err))
+            .catch(next)
     })
 
-    app.get("/api/get/employees", (req, res) => {
+    app.get("/api/get/employees", (req, res, next) => {
         db.employee.findAll({
             attributes: ['id', 'birth_date', 'first_name', 'last_name', 'gender'],
             include: [
@@ -134,12 +134,12 @@ module.exports = function (app) {
                             result.push(objC)
                             oneByOne(list)
                         })
-                        .catch(err => res.status(400).json(err))
+                        .catch(next)
                 }
                 else res.status(200).json(result)
             }
             oneByOne([...data]);
         })
-        .catch(err => res.status(400).json(err))
+        .catch(next)
     })
 }

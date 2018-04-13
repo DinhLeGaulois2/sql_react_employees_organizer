@@ -7,13 +7,13 @@ const Op = Sequelize.Op;
 const db = require("../models");
 
 module.exports = function (app) {
-    app.post("/api/add/department", (req, res) => {
+    app.post("/api/add/department", (req, res, next) => {
         db.department.findOrCreate({ where: { name: req.body.dptName } })
             .then(data => res.status(200).json(data))
-            .catch(err => res.status(400).json("Insertion failed! Err: " + err))
+            .catch(next)
     })
 
-    app.post("/api/add/dept-manager", (req, res) => {
+    app.post("/api/add/dept-manager", (req, res, next) => {
         const obj = req.body
         db.employee.findOne({ where: { id: obj.employeeId } })
             .then(data => {
@@ -29,12 +29,12 @@ module.exports = function (app) {
                                 to_date: obj.to_date
                             }
                         }).then(data => res.status(200).json(data))
-                            .catch(err => res.status(400).json("Insertion Failed, err: " + err))
-                    }).catch(err => res.status(400).json("The Given Department Doesn't Exist, err: " + err))
-            }).catch(err => res.status(400).json("The Given Employee Doesn't Exist, err: " + err))
+                            .catch(next)
+                    }).catch(next)
+            }).catch(next)
     })
 
-    app.post("/api/add/dept-emp", (req, res) => {
+    app.post("/api/add/dept-emp", (req, res, next) => {
         const obj = req.body
         db.employee.findOne({ where: { id: obj.employeeId } })
             .then(data => {
@@ -50,13 +50,13 @@ module.exports = function (app) {
                                 to_date: obj.to_date
                             }
                         }).then(data => res.status(200).json(data))
-                            .catch(err => res.status(400).json("Insertion Failed, err: " + err))
-                    }).catch(err => res.status(400).json("The Given Department Doesn't Exist, err: " + err))
-            }).catch(err => res.status(400).json("The Given Employee Doesn't Exist, err: " + err))
+                            .catch(next)
+                    }).catch(next)
+            }).catch(next)
     })
 
     // Need to use 'transaction'
-    app.post("/api/add/employee", (req, res) => {
+    app.post("/api/add/employee", (req, res, next) => {
         const obj = req.body
         return sequelize.transaction(t => {
             return db.title.findOrCreate({
@@ -86,6 +86,6 @@ module.exports = function (app) {
                     })
             })
         }).then(data => { res.status(200).json(data) })
-            .catch(err => res.status(400).json("Insertion Err: " + err))
+            .catch(next)
     })
 }
