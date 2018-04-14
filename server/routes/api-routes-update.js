@@ -26,9 +26,9 @@ module.exports = function (app) {
                 if (data == null)
                     res.status(400).json("The title of the employee with the id of '" + req.body.id + "' could not be fould!")
                 else {
-                    db.salary.update({
-                        salary: req.body.salary,
-                    }, { where: { id: req.body.id } })
+                    db.title.update({
+                        title: req.body.title,
+                    }, { where: { id: data[0].id } })
                         .then(data => res.status(200).json("Update Successfully!"))
                         .catch(next)
                 }
@@ -44,7 +44,7 @@ module.exports = function (app) {
                 else {
                     db.dept_emp.update({
                         departmentId: req.body.dptId,
-                    }, { where: { employeeId: req.body.empId } })
+                    }, { where: { employeeId: data[0].id } })
                         .then(data => res.status(200).json("Update Successfully!"))
                         .catch(next)
                 }
